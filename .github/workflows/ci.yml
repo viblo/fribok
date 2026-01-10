@@ -44,6 +44,25 @@ jobs:
     - name: Build
       run: mvn clean package
 
+    - name: Test Installer (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo dpkg -i target/dist/fribok*.deb
+        /opt/Fribok/bin/Fribok --version
+
+    - name: Test Installer (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        msiexec /i target/dist/Fribok.msi /qn
+        & "C:/Program Files/Fribok/Fribok.exe" --version
+
+    - name: Test Installer (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        sudo hdiutil attach target/dist/Fribok.dmg
+        /Volumes/Fribok/Fribok.app/Contents/MacOS/Fribok --version
+        sudo hdiutil detach /Volumes/Fribok
+
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
