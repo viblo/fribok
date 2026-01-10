@@ -93,6 +93,11 @@ public class Bookkeeping {
      * @param args The arguments to the program.
      */
     public static void main(String[] args) {
+        if (args.length > 0 && args[0].equals("--version")) {
+            System.out.println(Version.APP_TITLE + " " + Version.APP_VERSION);
+            return;
+        }
+
         try {
 	    String os = System.getProperty("os.name");
 	    FontSet fontSet = null;
