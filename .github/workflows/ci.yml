@@ -53,6 +53,10 @@ jobs:
         EOF
         ./appimagetool-x86_64.AppImage dist/Fribok
 
+    - name: List current directory (Linux)
+      if: runner.os == 'Linux'
+      run: ls -l
+
     - name: Test Installer (Linux)
       if: runner.os == 'Linux'
       run: |
