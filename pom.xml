@@ -370,13 +370,15 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <timestamp>${maven.build.timestamp}</timestamp>
-    <jpackage.skip>false</jpackage.skip>
     <!--maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format-->
   </properties>
   <profiles>
     <profile>
       <id>linux</id>
       <activation>
+        <property>
+          <name>jpackage.profile</name>
+        </property>
         <os>
           <family>linux</family>
         </os>
@@ -394,7 +396,6 @@
                   <goal>jpackage</goal>
                 </goals>
                 <configuration>
-                  <skip>${jpackage.skip}</skip>
                   <type>app-image</type>
                   <linuxShortcut>true</linuxShortcut>
                   <linuxMenuGroup>"Office;Finance"</linuxMenuGroup>
@@ -408,6 +409,9 @@
     <profile>
       <id>windows</id>
       <activation>
+        <property>
+          <name>jpackage.profile</name>
+        </property>
         <os>
           <family>windows</family>
         </os>
@@ -425,7 +429,6 @@
                   <goal>jpackage</goal>
                 </goals>
                 <configuration>
-                  <skip>${jpackage.skip}</skip>
                   <winMenu>true</winMenu>
                   <winShortcut>true</winShortcut>
                 </configuration>
@@ -438,6 +441,9 @@
     <profile>
       <id>mac</id>
       <activation>
+        <property>
+          <name>jpackage.profile</name>
+        </property>
         <os>
           <family>mac</family>
         </os>
@@ -454,9 +460,6 @@
                 <goals>
                   <goal>jpackage</goal>
                 </goals>
-                <configuration>
-                  <skip>${jpackage.skip}</skip>
-                </configuration>
               </execution>
             </executions>
           </plugin>
