@@ -39,8 +39,9 @@ jobs:
 
     - name: Check dependencies (Linux)
       if: runner.os == 'Linux'
-      run: ldd dist/Fribok/Fribok
-
+      run: |
+        cd dist/Fribok
+        ldd Fribok
     - name: Create AppImage (Linux)
       if: runner.os == 'Linux'
       run: |
