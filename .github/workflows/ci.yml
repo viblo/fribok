@@ -41,20 +41,21 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Install jpackage dependencies
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y fakeroot dpkg-dev
-
     - name: Build
       run: mvn clean package
+
+    - name: Create AppImage (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+        chmod +x appimagetool-x86_64.AppImage
+        ./appimagetool-x86_64.AppImage target/dist/Fribok
 
     - name: Test Installer (Linux)
       if: runner.os == 'Linux'
       run: |
-        sudo dpkg -i target/dist/fribok*.deb
-        /opt/Fribok/bin/Fribok --version
+        chmod +x Fribok-x86_64.AppImage
+        ./Fribok-x86_64.AppImage --version
 
     - name: Test Installer (Windows)
       if: runner.os == 'Windows'
