@@ -81,6 +81,7 @@
           <input>${project.build.directory}</input>
           <mainJar>${project.build.finalName}-jar-with-dependencies.jar</mainJar>
           <mainClass>org.fribok.bookkeeping.Bookkeeping</mainClass>
+          <skip>${jpackage.skip}</skip>
         </configuration>
       </plugin>
       <!-- Start: For IDEA-forms -->
@@ -370,6 +371,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <timestamp>${maven.build.timestamp}</timestamp>
+    <jpackage.skip>false</jpackage.skip>
     <!--maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format-->
   </properties>
   <profiles>
