@@ -78,8 +78,7 @@
           <appVersion>${project.version}</appVersion>
           <vendor>Fribok</vendor>
           <destination>target/dist</destination>
-          <input>${project.build.directory}</input>
-          <mainJar>${project.build.finalName}-jar-with-dependencies.jar</mainJar>
+          <mainJar>${project.build.directory}/${project.build.finalName}-jar-with-dependencies.jar</mainJar>
           <mainClass>org.fribok.bookkeeping.Bookkeeping</mainClass>
         </configuration>
       </plugin>
