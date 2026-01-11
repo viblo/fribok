@@ -1,0 +1,15 @@
+[INFO] Scanning for projects...
+[WARNING] The project org.fribok:fribok:jar:2.2-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[INFO]
+[INFO] -------------------------< org.fribok:fribok >--------------------------
+[INFO] Building Fribok 2.2-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] Parameter 'dependencySets' is unknown for plugin 'maven-assembly-plugin:3.7.1:single (make-assembly)'
+[WARNING] The artifact com.lowagie:itext:jar:4.2.2 has been relocated to com.itextpdf:itextpdf:jar:5.5.6: After release 2.1.7, iText moved from the MPLicense to the AGPLicense.
+			The groupId changed from com.lowagie to com.itextpdf and the artifactId from itext to itextpdf.
+			See http://itextpdf.com/functionalitycomparison for more information.
+[WARNING] The artifact xml-apis:xml-apis:jar:2.0.2 has been relocated to xml-apis:xml-apis:jar:1.0.b2
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ fribok ---
+[INFO] Deleting /app/target
