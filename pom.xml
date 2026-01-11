@@ -81,20 +81,7 @@
           <input>${project.build.directory}</input>
           <mainJar>${project.build.finalName}-jar-with-dependencies.jar</mainJar>
           <mainClass>org.fribok.bookkeeping.Bookkeeping</mainClass>
-          <winMenu>true</winMenu>
-          <winShortcut>true</winShortcut>
-          <linuxShortcut>true</linuxShortcut>
-          <linuxMenuGroup>"Office;Finance"</linuxMenuGroup>
         </configuration>
-        <executions>
-          <execution>
-            <id>jpackage</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jpackage</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <!-- Start: For IDEA-forms -->
       <plugin>
@@ -385,6 +372,101 @@
     <timestamp>${maven.build.timestamp}</timestamp>
     <!--maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format-->
   </properties>
+  <profiles>
+    <profile>
+      <id>linux</id>
+      <activation>
+        <property>
+          <name>jpackage.profile</name>
+        </property>
+        <os>
+          <family>linux</family>
+        </os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.panteleyev</groupId>
+            <artifactId>jpackage-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jpackage-linux</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>jpackage</goal>
+                </goals>
+                <configuration>
+                  <type>app-image</type>
+                  <linuxShortcut>true</linuxShortcut>
+                  <linuxMenuGroup>"Office;Finance"</linuxMenuGroup>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>windows</id>
+      <activation>
+        <property>
+          <name>jpackage.profile</name>
+        </property>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.panteleyev</groupId>
+            <artifactId>jpackage-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jpackage-windows</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>jpackage</goal>
+                </goals>
+                <configuration>
+                  <winMenu>true</winMenu>
+                  <winShortcut>true</winShortcut>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>mac</id>
+      <activation>
+        <property>
+          <name>jpackage.profile</name>
+        </property>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.panteleyev</groupId>
+            <artifactId>jpackage-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jpackage-mac</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>jpackage</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
 
 <!-- Local Variables:      -->
