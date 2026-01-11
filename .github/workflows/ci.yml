@@ -32,7 +32,7 @@ jobs:
       run: |
         wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
-        ./appimagetool-x86_64.AppImage target/dist/Fribok
+        ./appimagetool-x86_64.AppImage dist/Fribok
 
     - name: Test Installer (Linux)
       if: runner.os == 'Linux'
@@ -43,13 +43,13 @@ jobs:
     - name: Test Installer (Windows)
       if: runner.os == 'Windows'
       run: |
-        msiexec /i target/dist/Fribok.msi /qn
+        msiexec /i dist/Fribok.msi /qn
         & "C:/Program Files/Fribok/Fribok.exe" --version
 
     - name: Test Installer (macOS)
       if: runner.os == 'macOS'
       run: |
-        sudo hdiutil attach target/dist/Fribok.dmg
+        sudo hdiutil attach dist/Fribok.dmg
         /Volumes/Fribok/Fribok.app/Contents/MacOS/Fribok --version
         sudo hdiutil detach /Volumes/Fribok
 
@@ -58,4 +58,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: fribok-${{ matrix.os }}
-        path: target/dist/*
+        path: dist/*
