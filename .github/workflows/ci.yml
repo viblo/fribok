@@ -38,6 +38,15 @@ jobs:
       run: |
         wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
+        # Manually create the .desktop file
+        cat > dist/Fribok/Fribok.desktop <<EOF
+        [Desktop Entry]
+        Type=Application
+        Name=Fribok
+        Exec=Fribok
+        Icon=Fribok
+        Categories=Office;Finance;
+        EOF
         ./appimagetool-x86_64.AppImage dist/Fribok
 
     - name: Test Installer (Linux)
