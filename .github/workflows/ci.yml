@@ -7,25 +7,8 @@ on:
       - master
 
 jobs:
-  build_and_test:
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up JDK
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-
-    - name: Build and test
-      run: mvn clean install
-
-  build_and_publish:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+  build_and_test_native:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/master')
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -42,7 +25,7 @@ jobs:
         java-version: '21'
 
     - name: Build
-      run: mvn clean package -Djpackage.profile=true
+      run: mvn clean install -Djpackage.profile=true
 
     - name: Create AppImage (Linux)
       if: runner.os == 'Linux'
@@ -71,6 +54,7 @@ jobs:
         sudo hdiutil detach /Volumes/Fribok
 
     - name: Upload artifact
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       uses: actions/upload-artifact@v4
       with:
         name: fribok-${{ matrix.os }}
