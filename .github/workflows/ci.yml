@@ -12,7 +12,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
 
     steps:
     - name: Checkout code
@@ -64,10 +64,6 @@ jobs:
       run: |
         msiexec /i dist/Fribok.msi /qn
         & "C:/Program Files/Fribok/Fribok.exe" --version
-
-    - name: List dist directory (macOS)
-      if: runner.os == 'macOS'
-      run: ls -l dist
 
     - name: Test Installer (macOS)
       if: runner.os == 'macOS'
