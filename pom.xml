@@ -440,6 +440,7 @@
                   <goal>jpackage</goal>
                 </goals>
                 <configuration>
+                  <appVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</appVersion>
                   <winMenu>true</winMenu>
                   <winShortcut>true</winShortcut>
                 </configuration>
