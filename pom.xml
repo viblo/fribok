@@ -410,6 +410,7 @@
                 </goals>
                 <configuration>
                   <type>APP_IMAGE</type>
+                  <linuxShortcut>true</linuxShortcut>
                 </configuration>
               </execution>
             </executions>
