@@ -65,6 +65,10 @@ jobs:
         msiexec /i dist/Fribok.msi /qn
         & "C:/Program Files/Fribok/Fribok.exe" --version
 
+    - name: List dist directory (macOS)
+      if: runner.os == 'macOS'
+      run: ls -l dist
+
     - name: Test Installer (macOS)
       if: runner.os == 'macOS'
       run: |
