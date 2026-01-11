@@ -81,7 +81,6 @@
           <input>${project.build.directory}</input>
           <mainJar>${project.build.finalName}-jar-with-dependencies.jar</mainJar>
           <mainClass>org.fribok.bookkeeping.Bookkeeping</mainClass>
-          <skip>${jpackage.skip}</skip>
         </configuration>
       </plugin>
       <!-- Start: For IDEA-forms -->
@@ -395,6 +394,7 @@
                   <goal>jpackage</goal>
                 </goals>
                 <configuration>
+                  <skip>${jpackage.skip}</skip>
                   <type>app-image</type>
                   <linuxShortcut>true</linuxShortcut>
                   <linuxMenuGroup>"Office;Finance"</linuxMenuGroup>
@@ -425,6 +425,7 @@
                   <goal>jpackage</goal>
                 </goals>
                 <configuration>
+                  <skip>${jpackage.skip}</skip>
                   <winMenu>true</winMenu>
                   <winShortcut>true</winShortcut>
                 </configuration>
@@ -453,6 +454,9 @@
                 <goals>
                   <goal>jpackage</goal>
                 </goals>
+                <configuration>
+                  <skip>${jpackage.skip}</skip>
+                </configuration>
               </execution>
             </executions>
           </plugin>
